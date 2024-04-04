@@ -81,8 +81,10 @@ function buildGrid() {
         case 'std':
             contentMaster.innerHTML = '';
             for (let record of recordList) {
+                // Filtering
                 if(record["status"] === "CANCELED" && hideCanceled) continue;
                 if(record["status"] === "ENDLESS" && hideCanceled) continue;
+                if(record["status"] === "PLAYING" && hideCanceled) continue;
                 contentMaster.appendChild(createPanelBody(record, true));
             }
             document.body.appendChild(contentMaster);    
