@@ -187,15 +187,11 @@ function openRecord(record) {
 function setDates(date1, date2, status)
 {
     const date_options = {
-        weekday: 'long',
         year: 'numeric',
         month: 'long',
-        day: 'numeric',
       };
     let container = document.createElement('div');
     // Container start date
-    let container_start = document.createElement('div');
-    let date_start_icon = document.createElement('img');
     let date_start = document.createElement('div');
     let container_end = document.createElement('div');
     let date_end_icon = document.createElement('img');
@@ -203,13 +199,6 @@ function setDates(date1, date2, status)
     date_end_icon.src = "img/icons/date_end2.png";
     date_end_icon.style.width = "25px";
     date_end_icon.style.height = "25px";
-    date_start_icon.src = "img/icons/date_start.png";
-    if(date1 != '') {
-        date_start.textContent = new Date(date1).toLocaleDateString("en-DE", date_options);
-    } else {
-        date_start.textContent = "--";
-    }
-
 
     if(status == "PLAYING") {
         date_end.style.color = "grey";
@@ -220,17 +209,12 @@ function setDates(date1, date2, status)
         date_end.textContent = "canceled"
     }
     else {
-        date_start_icon.src = "img/icons/date_start.png";
         //date_start.textContent = "--"
         date_end.textContent = new Date(date2).toLocaleDateString("en-DE", date_options);
     } 
-    container_start.appendChild(date_start_icon);
-    container_start.appendChild(date_start);
     container_end.appendChild(date_end_icon);
     container_end.appendChild(date_end);
-    container.appendChild(container_start);
     container.appendChild(container_end);
-    container_start.className = "dateContainer";
     container_end.className = "dateContainer";
     container.className = "dateContainerParent";
     return container;
@@ -238,15 +222,21 @@ function setDates(date1, date2, status)
 
 function setNote(note) {
     let container = document.createElement('div');
-    let container_note = document.createElement('div');
-    //let container_icon = document.createElement('img');
-    //container_icon.src = "img/icons/note.png";
-    container_note.textContent = note;
-    //container.appendChild(container_icon);
-    container.appendChild(container_note);
     container.className = "noteContainerParent";
-    //container_icon.className = "noteContainer";
-    container_note.className = "noteContainer";
+
+    let containerIcon = document.createElement('div');
+    containerIcon.className = "noteIconContainer";
+    let icon = document.createElement('img');
+    icon.src = "img/icons/note_small.png";
+    containerIcon.appendChild(icon);
+
+    let containerNote = document.createElement('div');
+    containerNote.className = "noteTextContainer";
+    containerNote.textContent = note;
+
+    container.appendChild(containerIcon);
+    container.appendChild(containerNote);
+
     return container;
 }
 
