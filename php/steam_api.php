@@ -4,7 +4,7 @@ $game = "";
 $appid = "";
 $remoteAllSteamGames = "http://api.steampowered.com/ISteamApps/GetAppList/v0002/?key=STEAMKEY&format=json";
 $remoteOwnSteamGames = "https://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/" .
-"?key=7BBA04785020E53FF7BE2129FFFD1B64&steamid=76561198064631353&format=json";
+"?key=AA558CA932F40022BC9A5B758FF37C26&steamid=76561198064631353&format=json";
 $localAllSteamGames = "../games.json";
 $localOwnSteamGames = "../profile.json";
 

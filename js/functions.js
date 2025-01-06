@@ -81,7 +81,10 @@ function buildGrid() {
         case 'std':
             contentMaster.innerHTML = '';
             for (let record of recordList) {
+                // Filtering
                 if(record["status"] === "CANCELED" && hideCanceled) continue;
+                if(record["status"] === "ENDLESS" && hideCanceled) continue;
+                if(record["status"] === "PLAYING" && hideCanceled) continue;
                 contentMaster.appendChild(createPanelBody(record, true));
             }
             document.body.appendChild(contentMaster);    
@@ -238,8 +241,8 @@ function filterBySearch() {
 }
 
 function switchHideCanceled() {
-    if(hideCanceled) hideCanceled = false;
-    else hideCanceled = true;
+    if(hideCanceled) { hideCanceled = false; document.getElementById("hide-canceled-button").style.backgroundImage = 'url(\'img/buttons/unfiltered.png\')'; }
+    else { hideCanceled = true; document.getElementById("hide-canceled-button").style.backgroundImage = 'url(\'img/buttons/filtered.png\')'; }
     buildGrid();
 }
 
@@ -273,6 +276,7 @@ function findPlayedGames() {
         },
         error: function (request, error) {
             alert("Error Request: " + error + " - - Request: " + JSON.stringify(request));
+            addButton.disabled = false;
         }
     });
 }
@@ -431,7 +435,7 @@ function countEntriesByYear(targetYear) {
         return 0;
     }
     const filteredEntries = recordList.filter(entry => {
-        if (entry && entry["date_end"]) {
+        if (entry && entry["date_end"] && entry["status"] != "CANCELED" && entry["status"] != "ENDLESS") {
             const year = new Date(entry["date_end"]).getFullYear();
             return year === targetYear;
         }
