@@ -440,7 +440,7 @@ body {
 .dateContainerParent {
   color: #fff;
   margin-left: 1px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .dateContainer {
@@ -448,29 +448,42 @@ body {
   display: flex;
   justify-content: left;
   align-items: center;
-  margin-left: 5px;
-  margin-top: 10px;
-  gap: 10px;
-}
-
-.noteContainerParent {
-  color: #fff;
-  margin-left: 5px;
-  margin-top: 15px;
-}
-
-.noteContainer {
-  text-align: left;
-  white-space: pre; /* or white-space: pre-line; */
-  display: flex;
-  justify-content: left;
-  align-items: flex-end; /* Align items to the bottom of the container */
-  margin-left: 15px;
+  margin-left: 10px;
   margin-top: 10px;
   gap: 10px;
   font-weight: normal;
 }
 
+.noteContainerParent {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  color: #fff;
+  margin-left: 12px;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.noteIconContainer {
+  flex-shrink: 0; /* Prevent icon container from resizing */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Keep the icon at the top */
+}
+
+.noteIconContainer img {
+  height: 20px;
+  width: 20px;
+  margin-left: 2px;
+}
+
+.noteTextContainer {
+  text-align: left;
+  white-space: pre-wrap; /* Preserve line breaks */
+  flex-grow: 1; /* Allow this container to grow */
+  overflow: hidden;
+  font-weight: normal;
+  margin-top: 2px;
+}
 /* Panel design end */
 
 
